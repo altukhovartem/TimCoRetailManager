@@ -64,7 +64,7 @@ namespace TRMDataManager.Library.DataAccess
 						item.SaleId = sale.Id;
 						sql.SaveDataInTransaction("dbo.spSaleDetail_Insert", item);
 					}
-					//sql.CommitTransaction();
+					sql.CommitTransaction();
 				}
 				catch
 				{
