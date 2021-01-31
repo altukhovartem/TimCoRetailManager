@@ -74,11 +74,11 @@ namespace TRMDataManager.Library.DataAccess
 			}
 		}
 
-		//public List<ProductModel> GetProducts()
-		//{
-		//	SqlDataAccess sql = new SqlDataAccess();
-		//	var output = sql.LoadData<ProductModel, dynamic>("[dbo].[spProduct_GetAll]", new { }, "TRMData");
-		//	return output;
-		//}
+		public List<SaleReportModel> GetSaleReport()
+		{
+			SqlDataAccess sql = new SqlDataAccess();
+			var output = sql.LoadData<SaleReportModel, dynamic>("[dbo].[spSale_SaleReport]", new { }, "TRMData");
+			return output;
+		}
 	}
 }

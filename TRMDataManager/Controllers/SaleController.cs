@@ -11,7 +11,7 @@ using TRMDataManager.Library.Models;
 namespace TRMDataManager.Controllers
 {
 	[Authorize]
-    public class SaleController : ApiController
+	public class SaleController : ApiController
     {
         public void Post(SaleModel sale)
 		{
@@ -20,10 +20,11 @@ namespace TRMDataManager.Controllers
             date.SaveSale(sale, userId);
 		}
 
-        //public List<ProductModel> Get()
-        //{
-        //    ProductData data = new ProductData();
-        //    return data.GetProducts();
-        //}
+        [Route("GetSalesReport")]
+        public List<SaleReportModel> GetSalesReport()
+		{
+            SaleData data = new SaleData();
+            return data.GetSaleReport();
+		}
     }
 }
