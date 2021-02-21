@@ -1,4 +1,5 @@
 ﻿using Dapper;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -12,9 +13,14 @@ namespace TRMDataManager.Library.Internal.DataAccess
 {
 	internal class SqlDataAccess : IDisposable
 	{
+		public SqlDataAccess(IConfiguration config)
+		{
+			this.config = config;
+		}
+
 		public string GetConnectionString(string name)
 		{
-			return ConfigurationManager.ConnectionStrings[name].ConnectionString;
+			return config.GetConnectionString(name);
 		}
 
 		public List<T> LoadData<T, U>(string storedProcedure, U parameters, string connectionStringName)
@@ -65,6 +71,7 @@ namespace TRMDataManager.Library.Internal.DataAccess
 		}
 
 		private bool isClosed = false;
+		private readonly IConfiguration config;
 
 		public void CommitTransaction()
 		{
